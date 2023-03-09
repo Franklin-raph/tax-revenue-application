@@ -27,8 +27,8 @@ app.get('/all-employee', async (req, res) => {
         const allEmployees = await EmployeeModel.find().sort({createdAt: -1})
         return res.status(200).json(allEmployees)
     } catch (error) {
-        console.log(error)
-        return res.status(500).json(error)
+        console.log(error.message)
+        return res.status(500).json(error.message)
     }
 })
 
@@ -39,8 +39,8 @@ app.get('/employee/:employeeId', async (req, res) => {
         const employee = await EmployeeModel.findById(employeeId)
         return res.status(200).json(employee)
     } catch (error) {
-        console.log(error)
-        return res.status(500).json(error)
+        console.log(error.message)
+        return res.status(500).json(error.message)
     }
 })
 
@@ -56,7 +56,8 @@ app.put('/employee/:employeeId', (req, res) => {
             result.lastName = req.body.lastName;
             result.email = req.body.email;
             result.phone = req.body.phone;
-            result.salary = req.body.salary;
+            result.basicSalary = req.body.basicSalary;
+            result.totalTaxPaid = req.body.totalTaxPaid;
             result.totalEarnings = req.body.totalEarnings;
 
             result.save()
@@ -65,8 +66,8 @@ app.put('/employee/:employeeId', (req, res) => {
                 })
         })
     } catch (error) {
-        console.log(error)
-        return res.status(500).json(error)
+        console.log(error.message)
+        return res.status(500).json(error.message)
     }
 })
 
@@ -77,26 +78,26 @@ app.delete('/delete-employee/:employeeId', async (req, res) => {
         await EmployeeModel.findByIdAndDelete(employeeId)
         return res.status(200).json({err: "Employee data deleted successfully"})
     } catch (error) {
-        console.log(error)
-        return res.status(500).json(error)
+        console.log(error.message)
+        return res.status(500).json(error.message)
     }
 })
 
 
 app.post('/register-employee', async (req, res) => {
-    const {firstName, lastName, phone, email, totalEarnings, basicSalary} = req.body;
+    const {firstName, lastName, phone, email, totalEarnings, basicSalary, totalTaxPaid} = req.body;
     try {
 
         let employeeEmail = await EmployeeModel.findOne({email})
         if(employeeEmail) return res.status(400).json({err:"Employee with this email already exists"})
 
         const employee = await EmployeeModel.create({
-            firstName, lastName, phone, email, basicSalary, totalEarnings
+            firstName, lastName, phone, email, basicSalary, totalEarnings, totalTaxPaid
         })
     
         return res.status(201).json(employee)
     } catch (error) {
-        console.log(error)
-        return res.status(500).json(error)
+        console.log(error.message)
+        return res.status(500).json(error.message)
     }
 })

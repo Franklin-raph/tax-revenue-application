@@ -13,7 +13,7 @@ function App() {
   }, [])
 
   async function getAllEmployeesDetails() {
-    const response = await fetch('http://localhost:8000/all-employee/')
+    const response = await fetch('http://localhost:5000/all-employee/')
     const data = await response.json()
     setAllEmployee(data)
     console.log(data)
@@ -23,7 +23,7 @@ function App() {
     <div className="container mt-5">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={allEmployee && <Home allEmployee={allEmployee} />} />
+          <Route path='/' element={allEmployee && <Home allEmployee={allEmployee} getAllEmployeesDetails={getAllEmployeesDetails} />} />
           <Route path='employee/:employeeId' element={allEmployee && <EmployeeDetail allEmployee={allEmployee} />} />
         </Routes>
       </BrowserRouter>

@@ -21,6 +21,10 @@ const EmployeeSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    totalTaxPaid: {
+        type: Number,
+        default: 0
+    },
     totalEarnings: {
         type: Number,
         default: 0
