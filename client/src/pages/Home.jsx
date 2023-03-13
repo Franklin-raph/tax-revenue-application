@@ -9,6 +9,7 @@ const Home = ({ allEmployee, getAllEmployeesDetails }) => {
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [basicSalary, setBasicSalary] = useState("")
+    const [dapartment, setDapartment] = useState("")
 
     useEffect(() => {
         getAllEmployeesDetails()
@@ -18,7 +19,7 @@ const Home = ({ allEmployee, getAllEmployeesDetails }) => {
         e.preventDefault()
         const res = await fetch("http://localhost:5000/register-employee", {
             method: "POST",
-            body: JSON.stringify({ firstName, lastName, phone, email, basicSalary }),
+            body: JSON.stringify({ firstName, lastName, phone, email, basicSalary, dapartment }),
             headers: {
                 'Content-type': 'application/json'
             }
@@ -96,6 +97,15 @@ const Home = ({ allEmployee, getAllEmployeesDetails }) => {
                                 <div className="mb-3">
                                     <label htmlFor="recipient-name" className="col-form-label">Phone Number</label>
                                     <input required onChange={e => setPhone(e.target.value)} type="number" className="form-control" id="recipient-name" />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="recipient-name" className="col-form-label">Dapartment</label>
+                                    <select onChange={e => setDapartment(e.target.value)} className="form-control">
+                                        <option value="">-- Select --</option>
+                                        <option value="Engineering">Engineering</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Quality Assurance">Quality Assurance</option>
+                                    </select>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="recipient-name" className="col-form-label">Basic Salary</label>

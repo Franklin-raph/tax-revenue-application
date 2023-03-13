@@ -11,6 +11,7 @@ const EmployeeDetail = () => {
     const [email, setEmail] = useState("")
     const [salary, setSalary] = useState("")
     const [phone, setPhone] = useState("")
+    const [dapartment, setDapartment] = useState("")
     const [basicSalary, setBasicSalary] = useState()
     const [totalEarnings, setTotalEarnings] = useState()
     const [totalTaxPaid, setTotalTaxPaid] = useState()
@@ -31,9 +32,10 @@ const EmployeeDetail = () => {
             setBasicSalary(data.basicSalary)
             setTotalEarnings(data.totalEarnings)
             setTotalTaxPaid(data.totalTaxPaid)
+            setDapartment(data.dapartment)
         }
         setEmployee(data)
-        console.log(data.totalEarnings)
+        console.log(data)
     }
 
 
@@ -97,6 +99,7 @@ const EmployeeDetail = () => {
                     <small className='d-block text-center mb-5'>(NOTE: On each employees salary payment, 10% of an employees basic salary is being deducted for tax.)</small>
                     <h5 className='my-3'>Employee First Name: {employee.firstName}</h5>
                     <h5 className='my-3'>Employee Last Name: {employee.lastName}</h5>
+                    <h5 className='my-3'>Employee Department: {dapartment}</h5>
                     <h5 className='my-3'>Employee Email: {employee.email}</h5>
                     <h5 className='my-3'>Employee Phone Number: {employee.phone}</h5>
 

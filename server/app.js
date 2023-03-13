@@ -56,6 +56,7 @@ app.put('/employee/:employeeId', (req, res) => {
             result.lastName = req.body.lastName;
             result.email = req.body.email;
             result.phone = req.body.phone;
+            result.dapartment = req.body.dapartment;
             result.basicSalary = req.body.basicSalary;
             result.totalTaxPaid = req.body.totalTaxPaid;
             result.totalEarnings = req.body.totalEarnings;
@@ -85,14 +86,14 @@ app.delete('/delete-employee/:employeeId', async (req, res) => {
 
 
 app.post('/register-employee', async (req, res) => {
-    const {firstName, lastName, phone, email, totalEarnings, basicSalary, totalTaxPaid} = req.body;
+    const {firstName, lastName, phone, email, totalEarnings, basicSalary, totalTaxPaid, dapartment} = req.body;
     try {
 
         let employeeEmail = await EmployeeModel.findOne({email})
         if(employeeEmail) return res.status(400).json({err:"Employee with this email already exists"})
 
         const employee = await EmployeeModel.create({
-            firstName, lastName, phone, email, basicSalary, totalEarnings, totalTaxPaid
+            firstName, lastName, phone, email, basicSalary, totalEarnings, totalTaxPaid, dapartment
         })
     
         return res.status(201).json(employee)
