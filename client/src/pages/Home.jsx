@@ -17,7 +17,7 @@ const Home = ({ allEmployee, getAllEmployeesDetails }) => {
 
     async function addEmployee(e) {
         e.preventDefault()
-        const res = await fetch("https://tax-revenue.onrender.com/", {
+        const res = await fetch("https://tax-revenue.onrender.com/register-employee", {
             method: "POST",
             body: JSON.stringify({ firstName, lastName, phone, email, basicSalary, dapartment }),
             headers: {
