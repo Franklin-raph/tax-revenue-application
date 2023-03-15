@@ -22,7 +22,7 @@ mongoose.connect('mongodb+srv://franklin:franklin@cluster0.ypxmowo.mongodb.net/?
   }).catch((err) => console.log(err))
 
 app.get('/', (req, res) => {
-    res.send("Home Route")
+    res.redirect('https://tax-revenue-application.vercel.app/')
 })
 
 app.get('/all-employee', async (req, res) => {
