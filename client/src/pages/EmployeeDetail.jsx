@@ -21,7 +21,7 @@ const EmployeeDetail = () => {
     }, [])
 
     async function getEmployeesDetails() {
-        const response = await fetch(`https://tax-revenue.onrender.com/${employeeId}`)
+        const response = await fetch(`https://tax-revenue.onrender.com/employee/${employeeId}`)
         const data = await response.json()
         if (response.ok) {
             setFirstName(data.firstName)
@@ -43,7 +43,7 @@ const EmployeeDetail = () => {
         let amountToBeDeducted = 0.1 * basicSalary
         let taxPaid = totalTaxPaid + amountToBeDeducted
         let totalAmount = (totalEarnings + basicSalary) - amountToBeDeducted
-        const response = await fetch(`https://tax-revenue.onrender.com/${employeeId}`, {
+        const response = await fetch(`https://tax-revenue.onrender.com/employee/${employeeId}`, {
             method: "PUT",
             body: JSON.stringify({ ...employee, totalEarnings: totalAmount, totalTaxPaid: taxPaid }),
             headers: {
@@ -59,7 +59,7 @@ const EmployeeDetail = () => {
     }
 
     async function deleteEmployee() {
-        const res = await fetch('https://tax-revenue.onrender.com/' + employeeId, {
+        const res = await fetch('https://tax-revenue.onrender.com/delete-employee/' + employeeId, {
             method: "DELETE"
         })
         if (res.ok) {
@@ -69,6 +69,7 @@ const EmployeeDetail = () => {
 
     return (
         <div>
+            <h1 className='text-center '>Employee Details</h1>
             {employee &&
                 <>
                     <div className="d-flex justify-content-center align-items-center gap-5 my-3">

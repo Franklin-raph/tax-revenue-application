@@ -14,7 +14,7 @@ function App() {
   }, [])
 
   async function getAllEmployeesDetails() {
-    const response = await fetch('https://tax-revenue.onrender.com/')
+    const response = await fetch('https://tax-revenue.onrender.com/all-employee')
     const data = await response.json()
     setAllEmployee(data)
     console.log(data)
