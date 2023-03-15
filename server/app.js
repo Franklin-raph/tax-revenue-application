@@ -14,7 +14,7 @@ app.use(cors())
 PORT = process.env.PORT || 8000
 
 // connect to mongoDB
-mongoose.connect('mongodb://127.0.0.1/tax-revenue-app-dev')
+mongoose.connect('mongodb+srv://franklin:franklin@cluster0.ypxmowo.mongodb.net/?retryWrites=true&w=majority')
   .then(() => {
     app.listen(PORT, () => {
         console.log(`Server running on port ${PORT} \nMongo Db is connected`)
