@@ -21,6 +21,9 @@ mongoose.connect('mongodb+srv://franklin:franklin@cluster0.ypxmowo.mongodb.net/?
     })
   }).catch((err) => console.log(err))
 
+app.get('/', (req, res) => {
+    res.send("Home Route")
+})
 
 app.get('/all-employee', async (req, res) => {
     try {

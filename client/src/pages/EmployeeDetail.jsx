@@ -21,7 +21,7 @@ const EmployeeDetail = () => {
     }, [])
 
     async function getEmployeesDetails() {
-        const response = await fetch(`http://localhost:5000/employee/${employeeId}`)
+        const response = await fetch(`https://tax-revenue.onrender.com/${employeeId}`)
         const data = await response.json()
         if (response.ok) {
             setFirstName(data.firstName)
@@ -43,7 +43,7 @@ const EmployeeDetail = () => {
         let amountToBeDeducted = 0.1 * basicSalary
         let taxPaid = totalTaxPaid + amountToBeDeducted
         let totalAmount = (totalEarnings + basicSalary) - amountToBeDeducted
-        const response = await fetch(`http://localhost:5000/employee/${employeeId}`, {
+        const response = await fetch(`https://tax-revenue.onrender.com/${employeeId}`, {
             method: "PUT",
             body: JSON.stringify({ ...employee, totalEarnings: totalAmount, totalTaxPaid: taxPaid }),
             headers: {
@@ -59,7 +59,7 @@ const EmployeeDetail = () => {
     }
 
     async function deleteEmployee() {
-        const res = await fetch('http://localhost:5000/delete-employee/' + employeeId, {
+        const res = await fetch('https://tax-revenue.onrender.com/' + employeeId, {
             method: "DELETE"
         })
         if (res.ok) {
